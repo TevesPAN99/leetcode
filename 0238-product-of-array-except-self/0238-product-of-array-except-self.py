@@ -1,18 +1,16 @@
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
         n = len(nums)
-        answer = [1] * n
+        answer=[1]*n
 
-        # 第一遍：每个位置存左边所有数的乘积
-        prefix = 1
+        frontanswer = 1
         for i in range(n):
-            answer[i] = prefix
-            prefix *= nums[i]
-
-        # 第二遍：乘上右边所有数的乘积
-        suffix = 1
-        for i in range(n - 1, -1, -1):
-            answer[i] *= suffix
-            suffix *= nums[i]
-
+            answer[i]=frontanswer
+            frontanswer*=nums[i]
+        
+        behindanswer = 1
+        for i in range(n-1,-1,-1):
+            answer[i]*=behindanswer
+            behindanswer*=nums[i]
+        
         return answer
